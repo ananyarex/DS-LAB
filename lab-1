@@ -2,10 +2,10 @@
 
 #define MAX 3
 
-int top = -1, stack[SIZE];
+int top = -1, stack[20];
 void push();
 void pop();
-void show();
+void display();
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
             pop();
             break;
         case 3:
-            show();
+            display();
             break;
         case 4:
             exit(0);
@@ -68,7 +68,7 @@ void pop()
     }
 }
 
-void show()
+void display()
 {
     if (top == -1)
     {
