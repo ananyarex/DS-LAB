@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 3
+
+int f=-1,b=-1,queue[MAX],ch,item,ele;
+
+void insert();
+int delete();
+void display();
+
+void main()
+{
+    while(1)
+    {
+    printf("Enter your choice: \n1:Insert\n2:Delete\n3:Display\n4:Exit\n");
+    scanf("%d",&ch);
+
+    switch(ch)
+    {
+        case 1:insert();
+        break;
+
+        case 2:item=delete();
+        if(item!=-1)
+        {
+        printf("The deleted element is: %d\n",item);
+        }
+        break;
+
+        case 3:display();
+        break;
+
+        case 4:exit(0);
+
+    }
+    }
+
+}
+
+void insert()
+{
+    if(b==MAX-1)
+    {
+        printf("Queue is full\n");
+        return;
+    }
+
+    if(f==-1 && b==-1)
+    {
+        f=0;
+        b=0;
+    }
+
+    else
+    {
+        b=b+1;
+    }
+
+    printf("Enter element to insert: ");
+    scanf("%d",&ele);
+
+    queue[b]=ele;
+}
+
+
+int delete()
+{
+    if(f==-1 && b==-1)
+    {
+        printf("Queue is empty\n");
+        return -1;
+    }
+
+    item=queue[f];
+
+    if(f==b)
+    {
+        f=-1;
+        b=-1;
+    }
+
+    else
+    {
+        f=f+1;
+    }
+
+    return item;
+}
+
+void display()
+{
+    if(f==-1 && b==-1)
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Queue contents: \n");
+    for(int i=f;i<=b;i++)
+    {
+        printf("%d",queue[i]);
+        printf("\n");
+    }
+}
