@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int st, qu;
+char ch;
+
+struct Node {
+    int data;
+    struct Node *link;
+};
+
+typedef struct Node node;
+
+node *new1, *curr, *start1 = NULL, *temp, *prev, *next, *start2 = NULL, *start = NULL;
+
+void concatenate() {
+    if (start1 == NULL && start2 == NULL) {
+        printf("Empty lists\n");
+        return;
+    }
+
+    if (start1 == NULL) {
+        start = start2;
+        return;
+    }
+
+    if (start2 == NULL) {
+        start = start1;
+        return;
+    }
+
+    temp = start1;
+    while (temp->link != NULL) {
+        temp = temp->link;
+    }
+
+    temp->link = start2;
+    start = start1;
+    start1 = NULL;
+    start2 = NULL;
+}
+
+void create1() {
+    do {
+        new1 = (node *)malloc(sizeof(node));
+        printf("Enter value:\n");
+        scanf("%d", &new1->data);
+        new1->link = NULL;
+        if (start1 == NULL) {
+            start1 = new1;
+            curr = new1;
+        } else {
+            curr->link = new1;
+            curr = new1;
+        }
+        printf("Do you want to insert another element? (Y/N)\n");
+        scanf(" %c", &ch); 
+    } while (ch == 'y' || ch == 'Y');
+}
+
+void create2() {
+    do {
+        new1 = (node *)malloc(sizeof(node));
+        printf("Enter value:\n");
+        scanf("%d", &new1->data);
+        new1->link = NULL;
+        if (start2 == NULL) {
+            start2 = new1;
+            curr = new1;
+        } else {
+            curr->link = new1;
+            curr = new1;
+        }
+        printf("Do you want to insert another element? (Y/N)\n");
+        scanf(" %c", &ch); 
+    } while (ch == 'y' || ch == 'Y');
+}
+
+void display() {
+    if (start == NULL) {
+        printf("Empty\n");
+        return;
+    }
+    printf("Elements of the list:\n");
+    temp = start;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->link;
+    }
+    printf("\n");
+}
+
+int main() {
+    while (1) {
+        printf("Enter your choice\n1: create list 1\n2: create list 2\n3: exit\n4: concatenate\n5: display\n");
+        scanf("%d", &ch);
+
+        switch (ch) {
+            case 1: create1(); break;
+            case 2: create2(); break;
+            case 3: exit(0);
+            case 4: concatenate(); break;
+            case 5: display(); break;
+            default: printf("Invalid choice\n");
+        }
+    }
+    return 0;
+}
