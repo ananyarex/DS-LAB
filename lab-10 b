@@ -3,7 +3,7 @@
 
 #define MAX 10
 
-int a[MAX][MAX], vis[MAX], queue[MAX], front = -1, rear = -1, n;
+int a[MAX][MAX], vis[MAX], queue[MAX], front = -1, rear = -1, n,count=0;
 
 void bfs(int v);
 
@@ -48,6 +48,23 @@ int main() {
 
     printf("BFS traversal starting from vertex %d:\n", start);
     bfs(start);
+    
+    for (i=0;i<=n;i++)
+    {
+        if (vis[i]==1)
+        {
+            count+=1;
+        }
+    }
+    if (count==n)
+    {
+        printf("Graph is connected\n");
+    }
+    
+    else
+    {
+        printf("Graph disconnected.\n");
+    }
 
     return 0;
 }
