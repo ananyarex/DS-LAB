@@ -1,14 +1,6 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <stdio.h>
 
-int a[10][10], vis[10], i, j, n;
+int a[10][10], vis[10], i, j, n, count=0;
 void dfs(int);
 
 int main() {
@@ -24,12 +16,31 @@ int main() {
     for (i = 1; i < n; i++) {
         vis[i] = 0;
     }
-    printf("DFS traversal: ");
+    printf("DFS traversal: \n");
     for (i = 1; i <= n; i++) {
         if (vis[i] == 0) {
             dfs(i);
         }
     }
+    
+    
+    for (i=0;i<=n;i++)
+    {
+        if (vis[i]==1)
+        {
+            count+=1;
+        }
+    }
+    if (count==n)
+    {
+        printf("Graph is connected\n");
+    }
+    
+    else
+    {
+        printf("Graph disconnected.\n");
+    }
+    
     return 0;
 }
 
